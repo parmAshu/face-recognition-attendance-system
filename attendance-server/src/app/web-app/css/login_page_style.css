@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+input {
+    display: block;
+    margin: auto;
+    width : 80%;
+}
+#frm {
+    width : 30%;
+    padding : 20px;
+    border: solid 2px;
+    margin-left : auto;
+    margin-right : auto;
+    margin-top : 50px;
+    background-color: rgb(126, 245, 199);
+}
+#login_button {
+    display: block;
+    width : 30%;
+    margin : auto;
+}
+#heading {
+    text-align:center;
+}
+#msg {
+    text-align: center;
+}

@@ -1,0 +1,15 @@
+# macos files
+.DS_Store
+
+# development reosources
+resources/
+
+# data file
+attendance-server/src/app/data
+aicam/src/data
+
+# environment variable file
+**/setup/env_vars.sh
+
+# python cache files
+__pycache__

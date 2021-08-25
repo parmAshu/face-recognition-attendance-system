@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>Attendance</title>
+        <link href="/app/style/attendance_page_style.css" rel="stylesheet">
+        <script src="/app/auth/script/attendance_page_script.js"></script>
+    </head>
+    <body>
+
+
+        <div id="navbar">
+            <h3 class="navbar_items">Face recognition attendance system</h3>
+            <a class = "navbar_items navbar_links" href="/auth/logout">logout</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/device_page.html">device</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/attendance_page.html">attendance</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/employee_page.html">employee</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/home_page.html">admin</a>
+        </div>
+
+
+        <div id="content">
+
+            <div class="frm">
+                <div class="heading">
+                    <h3>Mark Attendance</h3>
+                </div>
+                <form>
+                    <label for="mark_employee_attendance_uid">Employee ID :</label>
+                    <input autocomplete="off" class="frm_input" id="mark_employee_attendance_uid" type="text" name="uid"><br><br>
+                    <label for="mark_employee_attendance_date">Date-time :</label>
+                    <input autocomplete="off" class="frm_input" id="mark_employee_attendance_datetime" type="datetime-local" name="date"><br><br>
+                </form>
+                <div>
+                    <p class="msg" id="mark_employee_attendance_msg"></p>
+                </div>
+                <button class="frm_buttons" id="mark_employee_details_button" onclick="markEmployeeAttendance()">Mark</button><br>
+            </div>
+
+            <div class="frm">
+                <div class="heading">
+                    <h3>Employee Attendance</h3>
+                </div>
+                <form>
+                    <label for="get_employee_attendance_uid">Employee ID :</label>
+                    <input autocomplete="off" class="frm_input" id="get_employee_attendance_uid" type="text" name="uid"><br><br>
+                    <label for="get_employee_attendance_startdate">Start Date :</label>
+                    <input autocomplete="off" class="frm_input" id="get_employee_attendance_startdate" type="date" name="startdate"><br><br>
+                    <label for="get_employee_attendance_enddate">End Date :</label>
+                    <input autocomplete="off" class="frm_input" id="get_employee_attendance_enddate" type="date" name="enddate"><br><br>
+                </form>
+                <div>
+                    <p class="msg" id="get_employee_attendance_msg"></p>
+                </div>
+                <button class="frm_buttons" id="get_employee_details_button" onclick="getEmployeeAttendance()">Get</button><br>
+            </div>
+
+            <div class="frm">
+                <div class="heading">
+                    <h3>Attendance of all employees</h3>
+                </div>
+                <form>
+                    <label for="get_employee_attendance_startdate">Start Date :</label>
+                    <input autocomplete="off" class="frm_input" id="get_allemployee_attendance_startdate" type="date" name="startdate"><br><br>
+                    <label for="get_allemployee_attendance_enddate">End Date :</label>
+                    <input autocomplete="off" class="frm_input" id="get_allemployee_attendance_enddate" type="date" name="enddate"><br><br>
+                </form>
+                <div>
+                    <p class="msg" id="get_allemployee_attendance_msg"></p>
+                </div>
+                <button class="frm_buttons" id="get_allemployee_details_button" onclick="getAllEmployeeAttendance()">Get</button><br>
+            </div><br>
+
+            <div class="frm">
+                <div class="heading">
+                    <h3>Delete Attendance Record</h3>
+                </div>
+                <form>
+                    <label for="delete_attendance_record_date">Date-time :</label>
+                    <input autocomplete="off" class="frm_input" id="delete_attendance_record_date" type="date" name="date"><br><br>
+                </form>
+                <div>
+                    <p class="msg" id="delete_attendance_record_msg"></p>
+                </div>
+                <button class="frm_buttons" id="delete_attendance_record_button" onclick="deleteAttendanceRecord()">Delete</button><br>
+                <button class="frm_buttons" id="delete_all_attendance_records_button" onclick="deleteAllAttendanceRecords()">Clear all records</button><br>
+            </div><br><br>
+
+        </div>
+    </body>
+</html>

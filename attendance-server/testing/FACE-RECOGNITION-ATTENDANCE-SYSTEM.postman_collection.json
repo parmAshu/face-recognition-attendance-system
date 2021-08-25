@@ -1,0 +1,1179 @@
+{
+	"info": {
+		"_postman_id": "6c0ced0f-ae20-4b8c-81d0-6cd48752960e",
+		"name": "FACE-RECOGNITION-ATTENDANCE-SYSTEM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ADMIN",
+			"item": [
+				{
+					"name": "LOGIN REQUEST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Checking if token is received\", function () ",
+									"{",
+									"    var jsonData = pm.response.json();",
+									"    console.log(jsonData)",
+									"",
+									"    if( pm.response.code != 200)",
+									"    {",
+									"        console.log(\"Token not received\");",
+									"        return;",
+									"    }",
+									"",
+									"    for( x in jsonData )",
+									"    {",
+									"        console.log(x)",
+									"        if ( x == String(\"token\") )",
+									"        {",
+									"            console.log(\"Token received, saving it\");",
+									"            pm.environment.set(\"token\", jsonData[x]);",
+									"        }",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/auth/login?username={{username}}&password={{password}}",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "{{username}}"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGOUT REQUEST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"LOGOUT\", ()=>{",
+									"    if( pm.response.code != 200 )",
+									"    {",
+									"        console.log(\"Operation failed\");",
+									"        return;",
+									"    }",
+									"",
+									"    pm.environment.set(\"token\", \"none\");",
+									"    console.log(\"Operation successfull\");",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/auth/logout",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE CREDENTIALS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test( \"Update credentials\", ()=>{",
+									"    if (pm.response.code != 200)",
+									"    {",
+									"        console.log(\"Failed to update credentials\");",
+									"        return;",
+									"    }",
+									"",
+									"    try",
+									"    {",
+									"        req = JSON.parse(pm.request.body);",
+									"        usr = req[\"username\"];",
+									"        pass = req[\"password\"];",
+									"        console.log(usr, pass);",
+									"        data = pm.response.json();    ",
+									"        for( x in data )",
+									"        {",
+									"            if( x == String(\"message\") && data[x] == String(\"updated\") )",
+									"            {",
+									"                console.log(\"successfully updated credentials\");",
+									"                pm.environment.set(\"username\", usr);",
+									"                pm.environment.set(\"password\", pass);",
+									"                 return;",
+									"            }",
+									"        }",
+									"",
+									"        console.log(\"failed to update credentials\");",
+									"",
+									"    }",
+									"    catch",
+									"    {",
+									"        console.log(\"invalid response format\");",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"ADMIN\",\n    \"password\" : \"PASSWORD\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/auth/update/admin/credentials",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"auth",
+								"update",
+								"admin",
+								"credentials"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EMPLOYEE",
+			"item": [
+				{
+					"name": "ADD EMPLOYEE",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/ashu/Desktop/screenshots/ashutosh.png"
+								},
+								{
+									"key": "uid",
+									"value": "ERT/ENG1/2021",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "Ashutosh",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "Parmar",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "M",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ashu@empyrotech.com",
+									"type": "text"
+								},
+								{
+									"key": "doj",
+									"value": "2021-1-1",
+									"type": "text"
+								},
+								{
+									"key": "dob",
+									"value": "1999-1-29",
+									"type": "text"
+								},
+								{
+									"key": "department",
+									"value": "reasearch and development",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "associate engineer",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/employee/addone",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"employee",
+								"addone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REMOVE EMPLOYEE",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uid\" : \"ERT/ENG1/2021\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/employee/removeone",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"employee",
+								"removeone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET EMPLOYEE IMAGE",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/employee/getone/image?uid=ERT/ENG1/2021",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"employee",
+								"getone",
+								"image"
+							],
+							"query": [
+								{
+									"key": "uid",
+									"value": "ERT/ENG1/2021"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET EMPLOYEE DETAILS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uid\" : \"ERT/COO/2021\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/employee/getone/details",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"employee",
+								"getone",
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE EMPLOYEE IMAGE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}.eyJfaWQiOiJlYjdmZTQ0OC0yNWJiLTRlNDAtOTQ0OC0wODdlNDdjNjUxNzkiLCJpYXQiOjE2MjczNzE4OTQsImV4cCI6MTYyNzM3MzY5NH0.4bfs8n5oVHBHhG8mn4qaPApc3Oe3B10vz9xlqMeuJQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "uid",
+									"value": "ERT/ENG1/2021",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/ashu/Desktop/screenshots/ashutosh.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/employee/updateone/image",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"employee",
+								"updateone",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE EMPLOYEE DETAILS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}.eyJfaWQiOiJlYjdmZTQ0OC0yNWJiLTRlNDAtOTQ0OC0wODdlNDdjNjUxNzkiLCJpYXQiOjE2MjczNzE4OTQsImV4cCI6MTYyNzM3MzY5NH0.4bfs8n5oVHBHhG8mn4qaPApc3Oe3B10vz9xlqMeuJQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uid\" : \"ERT/ENG1/2021\",\n    \"email\" : \"ashutoshsingh291999@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/employee/updateone/details",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"employee",
+								"updateone",
+								"details"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ATTENDANCE",
+			"item": [
+				{
+					"name": "MARK ATTENDANCE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}.eyJfaWQiOiJlYjdmZTQ0OC0yNWJiLTRlNDAtOTQ0OC0wODdlNDdjNjUxNzkiLCJpYXQiOjE2MjczNzE4OTQsImV4cCI6MTYyNzM3MzY5NH0.4bfs8n5oVHBHhG8mn4qaPApc3Oe3B10vz9xlqMeuJQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uid\" : \"ERT/CEO/2016\",\n    \"datetime\" : \"2021-8-10T9:35:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/attendance/mark/one",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"attendance",
+								"mark",
+								"one"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE ALL RECORDS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}.eyJfaWQiOiJlYjdmZTQ0OC0yNWJiLTRlNDAtOTQ0OC0wODdlNDdjNjUxNzkiLCJpYXQiOjE2MjczNzE4OTQsImV4cCI6MTYyNzM3MzY5NH0.4bfs8n5oVHBHhG8mn4qaPApc3Oe3B10vz9xlqMeuJQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/attendance/deleterecord/all",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"attendance",
+								"deleterecord",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE ONE RECORD",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}.eyJfaWQiOiJlYjdmZTQ0OC0yNWJiLTRlNDAtOTQ0OC0wODdlNDdjNjUxNzkiLCJpYXQiOjE2MjczNzE4OTQsImV4cCI6MTYyNzM3MzY5NH0.4bfs8n5oVHBHhG8mn4qaPApc3Oe3B10vz9xlqMeuJQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date\" : \"2021-8-10\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/attendance/deleterecord/one",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"attendance",
+								"deleterecord",
+								"one"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ATTENDANCE OF EMPLOYEE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}.eyJfaWQiOiJlYjdmZTQ0OC0yNWJiLTRlNDAtOTQ0OC0wODdlNDdjNjUxNzkiLCJpYXQiOjE2MjczNzE4OTQsImV4cCI6MTYyNzM3MzY5NH0.4bfs8n5oVHBHhG8mn4qaPApc3Oe3B10vz9xlqMeuJQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uid\" : \"ERT/CEO/2016\",\n    \"startdate\" : \"2021-8-1\",\n    \"enddate\" : \"2021-8-30\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/attendance/get/one/between",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"attendance",
+								"get",
+								"one",
+								"between"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ATTENDANCE OF ALL EMPLOYEES",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}.eyJfaWQiOiJlYjdmZTQ0OC0yNWJiLTRlNDAtOTQ0OC0wODdlNDdjNjUxNzkiLCJpYXQiOjE2MjczNzE4OTQsImV4cCI6MTYyNzM3MzY5NH0.4bfs8n5oVHBHhG8mn4qaPApc3Oe3B10vz9xlqMeuJQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startdate\" : \"2021-8-1\",\n    \"enddate\" : \"2021-8-20\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/attendance/get/all/between",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"attendance",
+								"get",
+								"all",
+								"between"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CAMERA DEVICES",
+			"item": [
+				{
+					"name": "ADD AICAM DEVICE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test( \"Storing api key if reqturned\", () => {",
+									"    if (pm.response.code != 200)",
+									"    {",
+									"        console.log(\"Something went wrong\");",
+									"        return;",
+									"    }",
+									"",
+									"    var jsonResp = pm.response.json();",
+									"    console.log( jsonResp[\"message\"] );",
+									"",
+									"    if( jsonResp[\"message\"] == \"already exists\" && jsonResp[\"device\"][\"registered\"] )",
+									"    {",
+									"        const key = jsonResp[\"device\"][\"api key\"];",
+									"        pm.environment.set( \"key\", key );",
+									"        console.log(key);",
+									"    }",
+									"",
+									"    return;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"device_id\" : \"23dafe@@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/devices/aicam/addone",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"devices",
+								"aicam",
+								"addone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ENCODING FILE",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "6Mge-_qyO6nmF_IOdRueZPRL2PMednXeV2MsO9hF",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Auth-Key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/devices/aicam/getencodingfile",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"devices",
+								"aicam",
+								"getencodingfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AUTHORIZE AICAM DEVICE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}.eyJfaWQiOiJlYjdmZTQ0OC0yNWJiLTRlNDAtOTQ0OC0wODdlNDdjNjUxNzkiLCJpYXQiOjE2MjczNzE4OTQsImV4cCI6MTYyNzM3MzY5NH0.4bfs8n5oVHBHhG8mn4qaPApc3Oe3B10vz9xlqMeuJQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/devices/aicam/authorize?device_id=dafd823e8dndn",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"devices",
+								"aicam",
+								"authorize"
+							],
+							"query": [
+								{
+									"key": "device_id",
+									"value": "dafd823e8dndn"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEAUTHORIZE AICAM DEVICE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}.eyJfaWQiOiJlYjdmZTQ0OC0yNWJiLTRlNDAtOTQ0OC0wODdlNDdjNjUxNzkiLCJpYXQiOjE2MjczNzE4OTQsImV4cCI6MTYyNzM3MzY5NH0.4bfs8n5oVHBHhG8mn4qaPApc3Oe3B10vz9xlqMeuJQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/devices/aicam/deauthorize?device_id=jdajfak",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"devices",
+								"aicam",
+								"deauthorize"
+							],
+							"query": [
+								{
+									"key": "device_id",
+									"value": "jdajfak"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE AICAM DEVICE LOCATION",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}.eyJfaWQiOiJlYjdmZTQ0OC0yNWJiLTRlNDAtOTQ0OC0wODdlNDdjNjUxNzkiLCJpYXQiOjE2MjczNzE4OTQsImV4cCI6MTYyNzM3MzY5NH0.4bfs8n5oVHBHhG8mn4qaPApc3Oe3B10vz9xlqMeuJQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"deviceid\" : \"kljdafhehh\",\n    \"lation\" : \"front door\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/devices/aicam/updateone/location",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"devices",
+								"aicam",
+								"updateone",
+								"location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET AICAM DETAILS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}.eyJfaWQiOiJlYjdmZTQ0OC0yNWJiLTRlNDAtOTQ0OC0wODdlNDdjNjUxNzkiLCJpYXQiOjE2MjczNzE4OTQsImV4cCI6MTYyNzM3MzY5NH0.4bfs8n5oVHBHhG8mn4qaPApc3Oe3B10vz9xlqMeuJQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/devices/aicam/getall",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"devices",
+								"aicam",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REMOVE AICAM DEVICE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}.eyJfaWQiOiJlYjdmZTQ0OC0yNWJiLTRlNDAtOTQ0OC0wODdlNDdjNjUxNzkiLCJpYXQiOjE2MjczNzE4OTQsImV4cCI6MTYyNzM3MzY5NH0.4bfs8n5oVHBHhG8mn4qaPApc3Oe3B10vz9xlqMeuJQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/devices/aicam/removeone?device_id=jkdafjl",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"devices",
+								"aicam",
+								"removeone"
+							],
+							"query": [
+								{
+									"key": "device_id",
+									"value": "jkdafjl"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MARK ATTENDANCE",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "6Mge-_qyO6nmF_IOdRueZPRL2PMednXeV2MsO9hF",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "Auth-Key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uid\" : \"ERT/CEO/2016\",\n    \"datetime\" : \"2021-8-3T9:45:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}:{{port}}/devices/aicam/markattendance/one",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"devices",
+								"aicam",
+								"markattendance",
+								"one"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "APP",
+			"item": [
+				{
+					"name": "ROOT REQUEST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}.eyJfaWQiOiJlYjdmZTQ0OC0yNWJiLTRlNDAtOTQ0OC0wODdlNDdjNjUxNzkiLCJpYXQiOjE2MjczNzE4OTQsImV4cCI6MTYyNzM3MzY5NH0.4bfs8n5oVHBHhG8mn4qaPApc3Oe3B10vz9xlqMeuJQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}:{{port}}/",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MISC",
+			"item": [
+				{
+					"name": "GENERATE ENCODING FILE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}.eyJfaWQiOiJlYjdmZTQ0OC0yNWJiLTRlNDAtOTQ0OC0wODdlNDdjNjUxNzkiLCJpYXQiOjE2MjczNzE4OTQsImV4cCI6MTYyNzM3MzY5NH0.4bfs8n5oVHBHhG8mn4qaPApc3Oe3B10vz9xlqMeuJQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/encodingfile/generate",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"encodingfile",
+								"generate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ENCODING FILE STATUS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{token}}.eyJfaWQiOiJlYjdmZTQ0OC0yNWJiLTRlNDAtOTQ0OC0wODdlNDdjNjUxNzkiLCJpYXQiOjE2MjczNzE4OTQsImV4cCI6MTYyNzM3MzY5NH0.4bfs8n5oVHBHhG8mn4qaPApc3Oe3B10vz9xlqMeuJQQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}:{{port}}/encodingfile/status",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"encodingfile",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

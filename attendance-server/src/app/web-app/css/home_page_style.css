@@ -1,0 +1,46 @@
+body, html {
+    font-family: Arial, Helvetica, sans-serif;
+    margin : 0;
+    padding : 0;
+}
+#navbar {
+    background-color: rgb(126, 245, 199);
+    padding : 10px;
+}
+.navbar_items {
+    display: inline;
+}
+.navbar_links {
+    padding : 5px;
+    float: right;
+    margin : 0px 10px 0px 10px;
+    text-decoration: none;
+}
+.navbar_links:hover {
+    background-color: rgb(102, 102, 197);
+    color : white;
+}
+
+input {
+    display: block;
+    margin: auto;
+    width : 80%;
+}
+#frm {
+    width : 30%;
+    padding : 20px;
+    border: solid 2px;
+    margin-left : 20px;
+    margin-top : 50px;
+}
+#login_button {
+    display: block;
+    width : 30%;
+    margin : auto;
+}
+#heading {
+    text-align:center;
+}
+#msg {
+    text-align: center;
+}

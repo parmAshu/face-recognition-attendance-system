@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Home</title>
+        <link href="/app/style/home_page_style.css" rel="stylesheet">
+        <script src="/app/auth/script/home_page_script.js"></script>
+    </head>
+    <body>
+        <div id="navbar">
+            <h3 class="navbar_items">Face recognition attendance system</h3>
+            <a class = "navbar_items navbar_links" href="/auth/logout">logout</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/device_page.html">device</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/attendance_page.html">attendance</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/employee_page.html">employee</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/home_page.html">admin</a>
+        </div>
+        <div id="content">
+            <div id="frm">
+                <div id="heading">
+                    <h3>Update Admin Credentials</h3>
+                </div>
+                <form>
+                    <input autocomplete="off" id="username" type="text" name="username" placeholder="new username"><br>
+                    <input autocomplete="off" id="password" type="text" name="password" placeholder="new password">
+                </form>
+                <div>
+                    <p id="msg"></p>
+                </div>
+                <button id="login_button" onclick="updateCredentials()" >Update</button>
+            </div>
+
+        </div>
+    </body>
+</html>

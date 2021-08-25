@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <title>Employee</title>
+        <link href="/app/style/employee_page_style.css" rel="stylesheet">
+        <script src="/app/auth/script/employee_page_script.js"></script>
+    </head>
+    <body>
+
+
+        <div id="navbar">
+            <h3 class="navbar_items">Face recognition attendance system</h3>
+            <a class = "navbar_items navbar_links" href="/auth/logout">logout</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/device_page.html">device</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/attendance_page.html">attendance</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/employee_page.html">employee</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/home_page.html">admin</a>
+        </div>
+
+
+        <div id="content">
+
+            <div class="frm">
+                <div class="heading">
+                    <h3>Employee Details</h3>
+                </div>
+                <form>
+                    <label for="get_employee_details_uid">Employee ID :</label>
+                    <input autocomplete="off" class="frm_input" id="get_employee_details_uid" type="text" name="uid"><br><br>
+                </form>
+                <div>
+                    <p class="msg" id="get_employee_details_msg"></p>
+                </div>
+                <div>
+                    <button class="frm_button1" id="get_employee_details_button" onclick="getEmployeeDetails()">Search</button>
+                    <button class="frm_button2" id="clear_employee_details_button" onclick="clearEmployeeDetails()">Clear</button>
+                </div><br>
+                <img id="employee_image">
+                <p id="employee_firstname"></p>
+                <p id="employee_lastname"></p>
+                <p id="employee_gender"></p>
+                <p id="employee_email"></p>
+                <p id="employee_dob"></p>
+                <p id="employee_doj"></p>
+                <p id="employee_department"></p>
+                <p id="employee_title"></p>
+            </div>
+
+            <div class="frm">
+                <div class="heading">
+                    <h3>Add Employee to Database</h3>
+                </div>
+                <form>
+                    <label for="add_employee_uid">Employee ID :</label>
+                    <input autocomplete="off" class="frm_input" id="add_employee_uid" type="text" name="uid"><br><br>
+                    <label for="add_employee_firstname">First Name :</label>
+                    <input autocomplete="off" class="frm_input" id="add_employee_firstname" type="text" name="firstname"><br><br>
+                    <label for="add_employee_lastname">Last Name :</label>
+                    <input autocomplete="off" class="frm_input" id="add_employee_lastname" type="text" name="lastname"><br><br>
+                    <label for="add_employee_gender">Gender    :</label>
+                    <select class="frm_input" id="add_employee_gender" name="gender">
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                        <option value="O">Other</option>
+                        <option value="A">Anonymous</option>
+                    </select><br><br>
+                    <label for="add_employee_email">Email :</label>
+                    <input autocomplete="off" class="frm_input" id="add_employee_email" type="text" name="email"><br><br>
+                    <label for="add_employee_dob">Date of birth :</label>
+                    <input autocomplete="off" class="frm_input" id="add_employee_dob" type="date" name="dob"><br><br>
+                    <label for="add_employee_doj">Date of joining :</label>
+                    <input autocomplete="off" class="frm_input" id="add_employee_doj" type="date" name="doj"><br><br>
+                    <label for="add_employee_department">Department :</label>
+                    <input autocomplete="off" class="frm_input" id="add_employee_department" type="text" name="department"><br><br>
+                    <label for="add_employee_title">Title :</label>
+                    <input autocomplete="off" class="frm_input" id="add_employee_title" type="text" name="title"><br><br>
+                    <label for="add_employee_image">Image :</label>
+                    <input autocomplete="off" class="frm_input" id="add_employee_image" type="file" name="image" accept=".jpeg, .png"><br><br>
+                </form>
+                <div>
+                    <p class="msg" id="add_employee_msg"></p>
+                </div>
+                <button class="frm_buttons" id="add_employee_button" onclick="addEmployee()" >Add</button>
+            </div>
+
+            <div class="frm">
+                <div class="heading">
+                    <h3>Remove Employee from Database</h3>
+                </div>
+                <form>
+                    <label for="remove_employee_uid">Employee ID :</label>
+                    <input autocomplete="off" class="frm_input" id="remove_employee_uid" type="text" name="uid"><br><br>
+                </form>
+                <div>
+                    <p class="msg" id="remove_employee_msg"></p>
+                </div>
+                <button class="frm_buttons" id="remove_employee_button" onclick="removeEmployee()" >Remove</button>
+            </div>
+
+            <div class="frm">
+                <div class="heading">
+                    <h3>Update Employee Details</h3>
+                </div>
+                <form>
+                    <label for="update_employee_details_uid">Employee ID :</label>
+                    <input autocomplete="off" class="frm_input" id="update_employee_details_uid" type="text" name="uid"><br><br>
+                    <label for="update_employee_details_email">Email :</label>
+                    <input autocomplete="off" class="frm_input" id="update_employee_details_email" type="text" name="email"><br><br>
+                    <label for="update_employee_details_department">Department :</label>
+                    <input autocomplete="off" class="frm_input" id="update_employee_details_department" type="text" name="department"><br><br>
+                    <label for="update_employee_details_title">Title :</label>
+                    <input autocomplete="off" class="frm_input" id="update_employee_details_title" type="text" name="title"><br><br>
+                </form>
+                <div>
+                    <p class="msg" id="update_employee_details_msg"></p>
+                </div>
+                <button class="frm_buttons" id="update_employee_details_button" onclick="updateEmployeeDetails()" >Update</button>
+            </div>
+
+            <div class="frm">
+                <div class="heading">
+                    <h3>Update Employee Image</h3>
+                </div>
+                <form>
+                    <label for="update_employee_image_uid">Employee ID :</label>
+                    <input autocomplete="off" class="frm_input" id="update_employee_image_uid" type="text" name="uid"><br><br>
+                    <label for="update_employee_image_image">Image :</label>
+                    <input autocomplete="off" class="frm_input" id="update_employee_image_image" type="file" name="image"  accepted = ".jpg, .png"><br><br>
+                </form>
+                <div>
+                    <p class="msg" id="update_employee_image_msg"></p>
+                </div>
+                <button class="frm_buttons" id="update_employee_image_button" onclick="updateEmployeeImage()">Update</button>
+            </div><br><br>
+
+        </div>
+    </body>
+</html>

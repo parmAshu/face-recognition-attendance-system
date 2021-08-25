@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Device</title>
+        <link href="/app/style/device_page_style.css" rel="stylesheet">
+        <script src="/app/auth/script/device_page_script.js"></script>
+    </head>
+    <body onload="getDevices()">
+        <div id="navbar">
+            <h3 class="navbar_items">Face recognition attendance system</h3>
+            <a class = "navbar_items navbar_links" href="/auth/logout">logout</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/device_page.html">device</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/attendance_page.html">attendance</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/employee_page.html">employee</a>
+            <a class = "navbar_items navbar_links" href="/app/auth/page/home_page.html">admin</a>
+        </div>
+
+        <div id="content"><br>
+
+            <div id = "generate_encoding_file_card">
+                <h3>Generate encoding file</h3>
+                <hr>
+                <button id="generate_encoding_file_button" onclick="generateEncodingFile()">Generate</button>
+                <div class="loader" id="generate_encoding_file_loader"></div><br>
+                <p id="generate_encoding_file_msg"></p>
+            </div>
+            
+        </div>
+
+    </body>
+</html>

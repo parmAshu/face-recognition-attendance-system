@@ -1,7 +1,7 @@
 """
 @author : Ashutosh Singh Parmar
 @file : aicam/api.py
-@description : This file contains utility methods that are used to access the attendance server APIs
+@brief : This file contains utility methods that are used to access the attendance server APIs
 """
 import os, io, json, requests
 

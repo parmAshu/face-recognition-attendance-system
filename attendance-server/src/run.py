@@ -1,3 +1,9 @@
+"""
+@author : Ashutosh Singh Parmar
+@file : run.py
+@brief : Starting point for the application
+"""
+
 import app
 
 APP = app.create_app()

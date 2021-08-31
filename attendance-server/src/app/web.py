@@ -1,3 +1,9 @@
+"""
+@author : Ashutosh Singh Parmar
+@file : serverDecorator.py
+@brief : This file servers the web application
+"""
+
 import os, io, pymongo
 from typing import MutableSet
 from functools import wraps

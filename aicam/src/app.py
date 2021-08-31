@@ -1,7 +1,7 @@
 """
 @author : Ashutosh Singh Parmar
 @file : aicam/app.py
-@description : This file is the main file for the aicam system
+@brief : This file is the main file for the aicam system
 """
 import os, threading, time, cv2, pickle, face_recognition
 

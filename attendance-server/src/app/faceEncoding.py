@@ -1,3 +1,9 @@
+"""
+@author : Ashutosh Singh Parmar
+@file : app/faceEncoding.py
+@brief : This file contains APIs used to generate and obtain face encoding file used for face recognition tasks
+"""
+
 import os, sys, traceback, io, pymongo, numpy as np, cv2, pickle, face_recognition as fr
 from threading import ThreadError
 from functools import wraps

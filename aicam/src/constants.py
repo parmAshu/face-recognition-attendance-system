@@ -1,7 +1,7 @@
 """
 @author : Ashutosh Singh Parmar
 @file : aicam/constants.py
-@description : This file contains various constants needed by the system
+@brief : This file contains various constants needed by the system
 """
 import os
 

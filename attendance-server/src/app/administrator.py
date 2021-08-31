@@ -1,6 +1,6 @@
 """
 @author : Ashutosh Singh Parmar
-@file : administrator.py
+@file : app/administrator.py
 @brief : This file contains admin APIs
 """
 

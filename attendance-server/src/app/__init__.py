@@ -13,6 +13,11 @@ from flask import Flask
 
 # Setting up administrator APIs
 #from administrator import refreshTokens, authenticate
+"""
+@author : Ashutosh Singh Parmar
+@file : app/__init__.py
+@brief : This app package initializer 
+"""
 
 # Setting up employee APIs
 #import employees

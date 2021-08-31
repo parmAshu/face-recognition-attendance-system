@@ -1,3 +1,9 @@
+"""
+@author : Ashutosh Singh Parmar
+@file : app/employees.py
+@brief : This file contains APIs related to manage employee database
+"""
+
 import os, sys, traceback, io, pymongo
 from functools import wraps
 from flask import request, Response, make_response, send_file, jsonify, Blueprint

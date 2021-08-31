@@ -1,3 +1,9 @@
+"""
+@author : Ashutosh Singh Parmar
+@file : camera.py
+@brief : This file contains functions to access the camera
+"""
+
 import os, face_recognition, pickle
 import time
 import cv2

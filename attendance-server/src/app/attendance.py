@@ -1,3 +1,9 @@
+"""
+@author : Ashutosh Singh Parmar
+@file : app/attendance.py
+@brief : This file attendance related APIs
+"""
+
 from datetime import date
 from os import write
 import sys, traceback, io, csv, pymongo

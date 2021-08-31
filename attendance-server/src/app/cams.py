@@ -1,3 +1,9 @@
+"""
+@author : Ashutosh Singh Parmar
+@file : app/cams.py
+@brief : This file contains aicam related APIs
+"""
+
 import io, sys, traceback, pymongo
 from functools import wraps
 from flask import request, Response, make_response, send_file, jsonify, Blueprint

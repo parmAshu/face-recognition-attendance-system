@@ -1,3 +1,9 @@
+"""
+@author : Ashutosh Singh Parmar
+@file : app/session.py
+@brief : This file contains decorators used to make APIs thread safe
+"""
+
 import os, traceback, uuid, datetime, jwt
 from functools import wraps
 from flask import request, Response, redirect, send_file

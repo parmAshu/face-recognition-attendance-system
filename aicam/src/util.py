@@ -1,7 +1,7 @@
 """
 @author : Ashutosh Singh Parmar
 @file : aicam/util.py
-@description : This file contains various utility functions
+@brief : This file contains various utility functions
 """
 import json, traceback
 

@@ -1,0 +1,41 @@
+"""
+@author : Ashutosh Singh Parmar
+@file : siu/settings.py
+@brief : This file contains setting parameters used by the siu package
+"""
+
+SIU_BAUDRATE = 115200
+
+SIU_PARITY = 'None'
+
+SIU_BOOT_TIME = 2
+
+SIU_CLEAR_DISPLAY = 0X0A
+
+SIU_DISPLAY_HOME = 0X10
+
+SIU_DISPLAY_ON = 0X11
+
+SIU_DISPLAY_OFF = 0X12
+
+SIU_CURSOR_ENABLE = 0X13
+
+SIU_CURSOR_DISABLE = 0X14
+
+SIU_BACKLIGHT_ENABLE = 0X15
+
+SIU_BACKLIGHT_DISABLE = 0X16
+
+SIU_CURSOR_POSITION = 0X17
+
+SIU_LONG_BEEP = 0X18
+
+SIU_SHORT_BEEP = 0X19
+
+SIU_PRINT = 0X1A
+
+SIU_DETECT = 0X1B
+
+DATETIME_FORMAT = "%d-%m-%Y,%H:%M"
+
+TIME_FORMAT = "%H:%M"

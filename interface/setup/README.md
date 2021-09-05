@@ -2,7 +2,7 @@
 
 The interface unit is a piece of hardware that connects to the computer on the camera device and acts as a human interface device. The necessary software can be installed using the following steps:
 
-# Installing Software
+# Installing Dependencies
 
 1. Install python3 (if not already installed.)
 2. Install `Network-Manager` using the following guide - [installing network manager](nmcli_install.md)

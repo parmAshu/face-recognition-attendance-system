@@ -196,7 +196,7 @@ def aicamGetEncodingFileHandler(**kwargs):
         if not encodingData:
             return apiResponse( "No encoding file exists", 404 )
 
-        return send_file( io.BytesIO( encodingData ), download_name="encodings.pickle", as_attachment=True )        
+        return send_file( filename_or_fp=io.BytesIO( encodingData ), attachment_filename="encodings.pickle", as_attachment=True )
     except Exception as e:
         return apiResponse( "Something went wrong", 500 )
 
@@ -241,7 +241,7 @@ def aicamAuthorizeHandler( **kwargs ):
 
         if dev["registered"]:
             return apiResponse( "Device is already authorized", 200 )
-
+        
         if database.cameraDeviceRegister( device_id = data["device_id"], status = True ):
             DEVICES[ DEVICES.index(dev) ]["registered"] = True
             return apiResponse( "Device authorized", 200 )

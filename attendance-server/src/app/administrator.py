@@ -26,7 +26,7 @@ def loginHandler(**kwargs):
     """
     This is the login request handler
     """
-    global AUTH_KEY, ADMIN, LOGGED_IN_USERS, MAX_ADMIN, TOKEN_EXPIRY_PERIOD
+    #global AUTH_KEY, ADMIN, LOGGED_IN_USERS, MAX_ADMIN, TOKEN_EXPIRY_PERIOD 
 
     reqUsername = request.args.get("username")
     reqPassword = request.args.get("password")
@@ -34,9 +34,11 @@ def loginHandler(**kwargs):
     cred = ad.getAdminCredentials()
 
     if reqUsername == cred[0] and reqPassword == cred[1]:
-        authToken, authjwt = generateToken(TOKEN_EXPIRY_PERIOD)
-        ADMIN.append( authToken )
-        LOGGED_IN_USERS = LOGGED_IN_USERS + 1
+        authToken, authjwt = generateToken(60)
+
+        #ADMIN.append( authToken )
+        #LOGGED_IN_USERS = LOGGED_IN_USERS + 1
+        addToken( authToken )
 
         resp = apiResponse( "success", 200 )
         resp.set_cookie( "auth-token", authjwt, httponly=True )
@@ -52,11 +54,12 @@ def logoutHandler(**kwargs):
     """
     This API is used to terminate current admin session and log out the admin system
     """
-    global AUTH_KEY, ADMIN, LOGGED_IN_USERS, MAX_ADMIN
+    #global AUTH_KEY, ADMIN, LOGGED_IN_USERS, MAX_ADMIN
     
     # delete the user entry
-    del(ADMIN[kwargs["index"]])
-    LOGGED_IN_USERS = LOGGED_IN_USERS - 1
+    #del(ADMIN[kwargs["index"]])
+    #LOGGED_IN_USERS = LOGGED_IN_USERS - 1
+    removeToken(kwargs["index"])
 
     return redirect( "/app/page/login_page.html", 302 )
 

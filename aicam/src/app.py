@@ -166,6 +166,7 @@ def detectFacesAndMarkAttendance():
                 elif resp == 2:
                     print( data["names"][indx] )
                     print( "already marked" )
+                    api.display( [data["names"][indx]] )
 
 # start the camera thread
 startCameraThread()

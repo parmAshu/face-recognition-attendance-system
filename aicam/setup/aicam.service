@@ -1,0 +1,16 @@
+
+[Unit]
+Description=aicam service
+After=network.target
+After=NetworkManager.service
+Requires=NetworkManager.service
+
+[Service]
+Environment=AICAM_PATH=/home/pi/projects/face-recognition-attendance-system/aicam/src
+Environment=ATTENDANCE_SERVER_URL=http://localhost
+Environment=UNIQUE_ID=QY9Zndve4Tzkh3uDZpLgQ5K3_7_9O6peNRL33o1prrsEGz9KMpgwXqCE7vc-ZBs6
+Environment=PYTHONPATH=/home/pi/projects/face-recognition-attendance-system/aicam/src
+ExecStart=/usr/bin/python3 /home/pi/projects/face-recognition-attendance-system/aicam/src/app.py
+
+[Install]
+WantedBy=multi-user.target

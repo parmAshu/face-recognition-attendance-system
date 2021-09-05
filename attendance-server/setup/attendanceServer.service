@@ -1,0 +1,18 @@
+
+[Unit]
+Description=Attendance server
+After=mongodb.service
+
+[Service]
+Environment=PYTHONPATH=/home/pi/projects/face-recognition-attendance-system/attendance-server/src/app
+Environment=ATT_SERVER_PATH=/home/pi/projects/face-recognition-attendance-system/attendance-server/src/app
+Environment=MONGODB_URL=localhost
+Environment=MONGODB_PORT=27017
+Environment=ADMIN_KEY=QV3Rdaqh1spQewRV
+Environment=ADMIN_IV=S8B-tUVvVwxGTnuN
+Environment=AUTH_KEY=kax64_WmLNXEmbm44timkLndix3qxP3N
+Environment=FLASK_APP=/home/pi/projects/face-recognition-attendance-system/attendance-server/src/app
+ExecStart=/usr/bin/python3 /home/pi/projects/face-recognition-attendance-system/attendance-server/src/run.py
+
+[Install]
+WantedBy=multi-user.target

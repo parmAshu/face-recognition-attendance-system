@@ -334,7 +334,7 @@ def getEmployeeImagehandler(**kwargs):
         if img:
             img_type = img[1]
             img = img[0]
-            return send_file( io.BytesIO(img), download_name=data["uid"]+"_image."+img_type, as_attachment=True )
+            return send_file( filename_or_fp=io.BytesIO(img), mimetype="image/"+img_type, as_attachment=True, attachment_filename=data["uid"]+str(int(datetime.datetime.utcnow().timestamp()))+"image."+img_type )
         else:
             return apiResponse( "No employee with given UID found", 400 )
     except KeyError:
@@ -344,7 +344,7 @@ def getEmployeeImagehandler(**kwargs):
     except pymongo.errors.ServerSelectionTimeoutError:
         return apiResponse( "Something went wrong", 500 )
     except Exception as e:
-        print(e)
+        traceback.print_exc()
         return apiResponse( "Invalid request", 400 )
 
 

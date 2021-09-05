@@ -62,6 +62,24 @@ def generateToken(expiry):
 
     return token, jwt.encode(token, AUTH_KEY, algorithm="HS256")
 
+def addToken( token ):
+    """
+    This function is used to add a token to the global list of tokens
+    """
+    global ADMIN, LOGGED_IN_USERS
+
+    ADMIN.append( token )
+    LOGGED_IN_USERS += 1
+
+def removeToken( token_index ):
+    """
+    This function is used to remove a token from the global list of tokens
+    """
+    global ADMIN, LOGGED_IN_USERS
+    
+    del(ADMIN[token_index])
+    LOGGED_IN_USERS -= 1
+
 # --------------------------------------------------------------------------------------------------------------------
 
 
@@ -94,7 +112,7 @@ def authenticate(fun):
 
             return fun( *args, token=tokenObj, index=i, **kwargs )
         except Exception as e:
-            traceback.print_exc()
+            #traceback.print_exc()
             return apiResponse( "authentication required", 401 )
     return innerFun
 
@@ -165,8 +183,10 @@ def refreshTokens(f):
         
         to_remove = []
 
+        dt = int(datetime.datetime.utcnow().timestamp())
+
         for token in ADMIN:
-            if token["exp"] < (datetime.datetime.utcnow()):
+            if token["exp"] < dt:
                 to_remove.append(ADMIN.index(token))
         
         LOGGED_IN_USERS = LOGGED_IN_USERS - len(to_remove)

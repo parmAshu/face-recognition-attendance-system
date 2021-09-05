@@ -8,12 +8,12 @@ import json, traceback
 import constants as const
 
 try:
-    global STATUS
     with open( const.STATUS_FILE ) as fl:
         STATUS = json.loads( fl.read() )
 except:
     with open( const.STATUS_FILE, "w" ) as fl:
         fl.write( json.dumps( const.STATUS_FILE_INIT_DATA ) )
+    STATUS = const.STATUS_FILE_INIT_DATA
 
 def deviceAuthorized():
     """

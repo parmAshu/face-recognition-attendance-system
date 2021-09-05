@@ -133,4 +133,10 @@ def display( uid_list ):
     -------
     NOTHING
     """
-    pass
+    url = "http://localhost:8000/display"
+    try:
+        for uid in uid_list:
+            obj = { "message" : uid }
+            requests.post(url, json=obj)
+    except:
+        pass

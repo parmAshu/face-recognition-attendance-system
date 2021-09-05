@@ -911,7 +911,7 @@ def cameraDeviceRegister( **kwargs ):
     Filter = {}
     Filter["device id"] = kwargs["device_id"]
     result = DB.devices.update_one( Filter, { "$set" : { "registered" : kwargs["status"] } } )
-    if result.acknowledged and result.modified_count:
+    if result.acknowledged:
         return True
     else:
         return False
@@ -937,7 +937,7 @@ def cameraDeviceHasFile( **kwargs ):
     Filter = {}
     Filter["device id"] = kwargs["device_id"]
     result = DB.devices.update_one( Filter, { "$set" : { "has file" : kwargs["status"] } } )
-    if result.acknowledged and result.modified_count:
+    if result.acknowledged:
         return True
     else:
         return False
@@ -963,7 +963,7 @@ def updateCameraDeviceLocation(**kwargs):
     Filter = {}
     Filter["device id"] = kwargs["device_id"]
     result = DB.devices.update_one( Filter, { "$set" : { "location" : kwargs["location"] } } )
-    if result.acknowledged and result.modified_count:
+    if result.acknowledged:
         return True
     else:
         return False

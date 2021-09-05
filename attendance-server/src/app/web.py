@@ -43,7 +43,11 @@ def getLoginPageHandler( *args, **kwargs ):
     This is used to handle requests for login page
     """
     try:
-        return send_file( ATT_SERVER_PATH + "/web-app/html/login_page.html" )
+        resp =  send_file( ATT_SERVER_PATH + "/web-app/html/login_page.html" )
+        resp.headers["Cache-Control"]="no-cache, no-store, must-revalidate"
+        resp.headers["Pragma"]="no-cache"
+        resp.headers["Expires"]="0"
+        return resp
     except Exception as e:
         return apiResponse( "Page not found", 404 )
 
@@ -77,7 +81,11 @@ def getWebPagesHandler( *args, **kwargs ):
     AUTHENTICATION REQUIRED !
     """
     try:
-        return send_file( ATT_SERVER_PATH + "/web-app/html/" + kwargs["path"] )
+        resp = send_file( ATT_SERVER_PATH + "/web-app/html/" + kwargs["path"] )
+        resp.headers["Cache-Control"]="no-cache, no-store, must-revalidate"
+        resp.headers["Pragma"]="no-cache"
+        resp.headers["Expires"]="0"
+        return resp
     except Exception as e:
         return apiResponse( "Page not found", 404 )
 

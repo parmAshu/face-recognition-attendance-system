@@ -178,7 +178,7 @@ def getAttendanceOfOneBetweenHandler( **kwargs ):
             responseFile.seek(0)
             response_file = io.BytesIO( responseFile.read().encode("utf-8") )
             responseFile.close()
-            return send_file( response_file, download_name=kwargs["uid"]+"_attendance.csv" , as_attachment=True )
+            return send_file( filename_or_fp=response_file, mimetype="text/csv", attachment_filename=kwargs["uid"]+"_attendance.csv" , as_attachment=True )
         else:
             return apiResponse( "Something went wrong", 500 )
 
@@ -284,7 +284,7 @@ def getAttendanceOfAllBetweenHandler(**kwargs):
             responseFile.seek(0)
             response_file = io.BytesIO( responseFile.read().encode("utf-8") )
             responseFile.close()
-            return send_file( response_file, download_name="attendance_" + kwargs["startdate"].strftime(const.DATE_FORMAT) + "_" + kwargs["enddate"].strftime(const.DATE_FORMAT) + ".csv" , as_attachment=True )
+            return send_file( filename_or_fp=response_file, mimetype="text/csv", attachment_filename="attendance_" + kwargs["startdate"].strftime(const.DATE_FORMAT) + "_" + kwargs["enddate"].strftime(const.DATE_FORMAT) + ".csv" , as_attachment=True )
         else:
             return apiResponse( "Something went wrong", 500 )
 

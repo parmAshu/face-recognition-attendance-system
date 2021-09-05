@@ -2,7 +2,7 @@
 
 AIcam software is peforms the face-recognition and marks attendance using the APIs provided by the attendance-server
 
-# Installing Software
+# Installing Dependencies
 
 1. Install python3 (if not already installed.)
 2. Now install all the required python packages. This can be done using the following command : <br>

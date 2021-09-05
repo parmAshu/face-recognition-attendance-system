@@ -13,11 +13,14 @@ The attendance server can be used in two ways -
 `sudo apt install mongodb`<br>
 `sudo systemctl enable mongodb`<br>
 `sudo systemctl start mongdb`<br>
-4. Now generate the service file and environment variable file by executing the `generateServiceFile.py` script from the `setup` directory.
-5. Test the attendance server using the following command : <br>
+
+# Deploying software
+
+1. Now generate the service file and environment variable file by executing the `generateServiceFile.py` script from the `setup` directory.
+2. Test the attendance server using the following command : <br>
 `source <project-path>/attendance-server/setup/env_vars.sh` <br>
 `python3 <project-path>/attendance-server/src/run.py`
-6. If there are any errors then rectify them before proceeding to next step
-7. This step is valid only for machines having `systemd`. Move the `attendanceServer.service` file to systemd service file directory and use the following commands to active it:<br>
-`systemctl enable attendanceServer.service`
+3. If there are any errors then rectify them before proceeding to next step
+4. This step is valid only for machines having `systemd`. Move the `attendanceServer.service` file to systemd service file directory and use the following commands to active it:<br>
+`systemctl enable attendanceServer.service`<br>
 `systemctl start attendanceServer.service`

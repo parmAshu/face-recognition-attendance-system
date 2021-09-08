@@ -23,6 +23,15 @@ if not util.deviceAuthorized():
 
 print("STATE : REGISTERED")
 
+AICAM_PATH = os.environ["AICAM_PATH"]
+try:
+    fl = open( AICAM_PATH + "/update.txt" )
+    fl.close()
+    util.setFileStatus( has_file=False )
+    os.remove( AICAM_PATH + "/update.txt" )
+except:
+    pass
+
 api_key = util.getApiKey()
 
 if not util.hasEncodingFile():

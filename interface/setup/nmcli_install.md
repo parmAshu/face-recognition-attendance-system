@@ -7,7 +7,7 @@
 
 The `/etc/network/interfaces` file should be empty except for an include from `/etc/network/interfaces.d` (which in turn is empty).
 
-Add the following line to `/etc/dhcpd.conf` :
+Add the following line to `/etc/dhcpcd.conf` :
 
 `denyinterfaces wlan0`
 

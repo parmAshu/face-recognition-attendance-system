@@ -1,3 +1,4 @@
+
 # macos files
 .DS_Store
 
@@ -11,6 +12,12 @@ aicam/src/data
 # environment variable file
 **/setup/env_vars.sh
 
+# service files
+aicam/setup/aicam.service
+interface/setup/interface.service
+attendance-server/setup/attendacneServer.service
+
 # python cache files
 __pycache__
 
+aicam/src/update.txt

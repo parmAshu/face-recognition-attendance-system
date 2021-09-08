@@ -2,11 +2,26 @@
 @author : Ashutosh Singh Parmar
 @file : display.py
 """
-import time, datetime
+import time, datetime, subprocess
 
 from siu import settings as st
 
 import networkUtility as nu
+
+def statusAICAM():
+    """
+    This function is used to get the status of aicam system
+    """
+    command = "systemctl status aicam.service"
+    resp = subprocess.run( command.split(), capture_output=True ).stdout.decode()
+    lines = resp.split("\n")
+    for line in lines:
+        if "Active" in line and "running" in line:
+            return True
+        elif "Active" in line and "running" not in line:
+            return False
+        
+    return False
 
 class DISPLAY:
     """
@@ -98,9 +113,14 @@ class DISPLAY:
         
         self.DISPLAY_STATUS = "NETWORK"
 
-    def networkScanScreen(self):
+    def aicam( self ):
         """
-        This function is used to display the network scanning screen
+        This function is used to display the aicam screen
         """
         self.DEVICE.clearDisplay()
-        self.DISPLAY_STATUS = "SCANNING"
+        self.DEVICE.show( "AICAM - " )
+        if statusAICAM():
+            self.DEVICE.show("running")
+        else:
+            self.DEVICE.show("stopped")
+        self.DISPLAY_STATUS = "AICAM"

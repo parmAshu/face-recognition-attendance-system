@@ -8,6 +8,8 @@ This system can be used to mark attendance using face-recognition technology.
 
 2. [Setup attendance server](attendance-server/setup/README.md)
 
-3. [Setup interface unit for camera devices](interface/setup/README.md)
+3. [Setup peripherals](peripheral/README.md)
 
-4. [Setup camera device](aicam/setup/README.md)
+4. [Setup interface unit for camera devices](interface/setup/README.md)
+
+5. [Setup camera device](aicam/setup/README.md)

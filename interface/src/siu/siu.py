@@ -3,7 +3,7 @@
 @file : siu/siu.py
 @brief : This file contains utility functions to interact with siu devices connected to the computer
 """
-
+import traceback
 from sys import byteorder
 import time
 import serial, serial.tools.list_ports
@@ -64,7 +64,8 @@ def detectSIUDevices():
         p = serial.Serial()
         p.port = dev
         p.baudrate = st.SIU_BAUDRATE
-        p.timeout = 0.1 
+        p.timeout = 0.1
+        p.write_timeout = 1
         try:
             p.open()
             time.sleep( st.SIU_BOOT_TIME )
@@ -74,6 +75,7 @@ def detectSIUDevices():
                 siu_devices.append( dev )
             raise Exception
         except:
+            #traceback.print_exc()
             p.close()
 
     return siu_devices
